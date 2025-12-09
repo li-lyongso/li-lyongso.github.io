@@ -1,0 +1,114 @@
+:root{
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #4f46e5;
+  --accent-600: #4338ca;
+  --success: #10b981;
+  --danger: #ef4444;
+  --glass: rgba(255,255,255,0.7);
+  --radius: 10px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color-scheme: light;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#eef2ff 0%, var(--bg) 100%);
+  color:#0f172a;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  padding-bottom:40px;
+}
+
+/* Container */
+.container{max-width:1100px;margin:0 auto;padding:20px}
+
+/* Topbar */
+.topbar{background:transparent;padding:14px 0}
+.topbar-inner{display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{
+  width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-600));
+  color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;
+}
+.brand-text .name{font-weight:700}
+.brand-text .tagline{font-size:12px;color:var(--muted)}
+
+/* Search */
+.search{flex:1}
+.search input{
+  width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);
+  background:rgba(255,255,255,0.8);
+}
+
+/* Actions */
+.actions{display:flex;gap:8px}
+.btn{
+  background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;
+}
+.btn:hover{background:var(--accent-600)}
+.btn-outline{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--accent)}
+.btn-ghost{background:transparent;color:var(--muted)}
+.btn-sm{padding:6px 8px;font-size:13px}
+
+/* Layout */
+.layout{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start;margin-top:12px}
+.main-col{min-width:0}
+.side-col{position:sticky;top:20px}
+
+/* Cards */
+.card{background:var(--card);padding:14px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(15,23,42,0.06);margin-bottom:14px}
+.about p{margin:8px 0;color:var(--muted)}
+.meta{color:var(--muted);font-weight:600;margin-top:8px}
+
+/* Composer */
+.composer{background:var(--card);padding:12px;border-radius:12px;margin-bottom:12px;box-shadow:0 4px 12px rgba(2,6,23,0.04)}
+.composer input, .composer textarea{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06)}
+.composer-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+
+/* Feed */
+.feed{display:flex;flex-direction:column;gap:12px}
+.post{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 14px rgba(2,6,23,0.04)}
+.post-head{display:flex;gap:10px;align-items:center}
+.post .avatar{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#60a5fa,#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.post-title{margin:8px 0 0}
+.post-body{margin-top:8px;color:#111827}
+.post-tags{margin-top:10px}
+.tag{display:inline-block;padding:6px 8px;border-radius:999px;background:#eef2ff;color:#1e3a8a;margin-right:6px;font-size:13px}
+
+/* Footer actions */
+.post-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.post-actions button{background:transparent;border:none;cursor:pointer;font-size:14px;color:var(--muted)}
+.post-actions button.liked{color:var(--danger)}
+
+/* Comments */
+.comments{border-top:1px dashed rgba(0,0,0,0.04);padding-top:10px;margin-top:10px}
+.existing-comments{margin-bottom:8px}
+.comment{padding:8px;border-radius:8px;background:#f8fafc;margin-bottom:6px}
+.add-comment{display:flex;gap:8px}
+.add-comment input{flex:1;padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06)}
+
+/* Members */
+.members-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.member-item{display:flex;align-items:center;gap:8px}
+.member-item .avatar{width:36px;height:36px;border-radius:10px;background:#ddd;color:#fff;display:flex;align-items:center;justify-content:center}
+
+/* Tags cloud */
+.tags-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.tag-pill{padding:6px 10px;border-radius:999px;background:#fff;border:1px solid rgba(15,23,42,0.04);cursor:pointer;color:var(--muted);font-size:13px}
+
+/* Hidden helper */
+.hidden{display:none}
+
+/* No posts */
+.no-posts{background:linear-gradient(90deg,#fff,#fbfdff);padding:20px;border-radius:12px;text-align:center;color:var(--muted)}
+
+/* Responsive */
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr; padding-bottom:40px}
+  .side-col{position:static}
+  }
