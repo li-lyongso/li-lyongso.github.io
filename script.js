@@ -42,9 +42,10 @@ function load() {
   if (members.length === 0) {
     // seed members
     members = [
-      { name: "Aiko", initials: "A" },
-      { name: "Kaito", initials: "K" },
-      { name: "Mina", initials: "M" }
+      { name: "타냐", initials: "T" },
+      { name: "빅토리아", initials: "V" },
+      { name: "모니카", initials: "M" }
+      { name: "베니", initials: "M" }
     ];
   }
 }
