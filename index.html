@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Community — Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="logo">C</div>
+        <div class="brand-text">
+          <div class="name">Community</div>
+          <div class="tagline">Share. Discuss. Connect.</div>
+        </div>
+      </div>
+      <div class="search">
+        <input id="globalSearch" type="search" placeholder="Search posts or tags..." />
+      </div>
+      <div class="actions">
+        <button id="joinBtn" class="btn btn-outline">Join</button>
+        <button id="newPostToggle" class="btn">New Post</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <section class="main-col">
+      <div id="composer" class="composer hidden">
+        <h3>Create a post</h3>
+        <input id="postTitle" placeholder="Title (optional)" />
+        <textarea id="postBody" rows="4" placeholder="What's on your mind?"></textarea>
+        <input id="postTags" placeholder="Tags (comma separated)" />
+        <div class="composer-actions">
+          <button id="postCancel" class="btn btn-ghost">Cancel</button>
+          <button id="postSubmit" class="btn">Post</button>
+        </div>
+      </div>
+
+      <div id="feed" class="feed">
+        <!-- posts injected here -->
+      </div>
+
+      <div id="noPosts" class="no-posts hidden">No posts yet — be the first to post!</div>
+    </section>
+
+    <aside class="side-col">
+      <div class="card about">
+        <h4>About this community</h4>
+        <p>A friendly place to ask questions, share updates, and connect with other members.</p>
+        <div class="meta">
+          <span id="memberCount">0</span> members
+        </div>
+      </div>
+
+      <div class="card members">
+        <h4>Members</h4>
+        <ul id="membersList" class="members-list">
+          <!-- members injected -->
+        </ul>
+      </div>
+
+      <div class="card tags">
+        <h4>Popular tags</h4>
+        <div id="tagsCloud" class="tags-cloud">
+          <!-- tags injected -->
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <template id="postTemplate">
+    <article class="post">
+      <header class="post-head">
+        <div class="avatar"></div>
+        <div class="meta">
+          <div class="author">You</div>
+          <div class="time">just now</div>
+        </div>
+      </header>
+      <h3 class="post-title"></h3>
+      <div class="post-body"></div>
+      <div class="post-tags"></div>
+      <footer class="post-foot">
+        <div class="post-actions">
+          <button class="like-btn">♡ <span class="like-count">0</span></button>
+          <button class="comment-toggle">💬 <span class="comment-count">0</span></button>
+        </div>
+        <div class="post-time"></div>
+      </footer>
+      <div class="comments hidden">
+        <div class="existing-comments"></div>
+        <div class="add-comment">
+          <input class="comment-input" placeholder="Write a comment..." />
+          <button class="btn btn-sm add-comment-btn">Reply</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
