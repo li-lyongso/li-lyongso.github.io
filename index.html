@@ -10,32 +10,70 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand">
-        <div class="logo">C</div>
+        <div class="logo">T</div>
         <div class="brand-text">
-          <div class="name">Tetoris chaneru</div>
-          <div class="tagline">Share. Discuss. Connect.</div>
+          <div class="name">테트리스 채널</div>
+          <div class="tagline">공유. 토론. 연결.</div>
         </div>
       </div>
       <div class="search">
-        <input id="globalSearch" type="search" placeholder="Search posts or tags..." />
+        <input id="globalSearch" type="search" placeholder="게시글 또는 태그 검색..." />
       </div>
       <div class="actions">
-        <button id="joinBtn" class="btn btn-outline">Join</button>
-        <button id="newPostToggle" class="btn">New Post</button>
+        <div id="userSection" class="user-section">
+          <button id="loginBtn" class="btn btn-outline">로그인</button>
+          <button id="signupBtn" class="btn">회원가입</button>
+        </div>
+        <div id="authSection" class="auth-section hidden">
+          <span id="userNameDisplay"></span>
+          <button id="logoutBtn" class="btn btn-ghost">로그아웃</button>
+          <button id="newPostToggle" class="btn">새 글 쓰기</button>
+          <button id="electionToggle" class="btn btn-success">선거(투표)</button>
+        </div>
       </div>
     </div>
   </header>
 
   <main class="container layout">
     <section class="main-col">
-      <div id="composer" class="composer hidden">
-        <h3>Create a post</h3>
-        <input id="postTitle" placeholder="Title (optional)" />
-        <textarea id="postBody" rows="4" placeholder="What's on your mind?"></textarea>
-        <input id="postTags" placeholder="Tags (comma separated)" />
+      <div id="authModal" class="modal hidden">
+        <div class="modal-content card">
+          <h3 id="modalTitle">로그인</h3>
+          <div class="form-group">
+            <input id="authEmail" type="email" placeholder="이메일" />
+            <input id="authPassword" type="password" placeholder="비밀번호" />
+            <input id="authName" class="hidden" type="text" placeholder="이름" />
+          </div>
+          <div class="modal-actions">
+            <button id="modalCancel" class="btn btn-ghost">취소</button>
+            <button id="modalSubmit" class="btn">확인</button>
+          </div>
+          <p id="modalSwitch" class="modal-switch">계정이 없으신가요? 회원가입</p>
+        </div>
+      </div>
+
+      <div id="electionComposer" class="composer hidden">
+        <h3>선거(투표) 만들기</h3>
+        <input id="electionTitle" placeholder="투표 제목" />
+        <div id="electionOptions" class="election-options">
+          <input class="election-opt" placeholder="옵션 1" />
+          <input class="election-opt" placeholder="옵션 2" />
+        </div>
+        <button id="addOptionBtn" class="btn btn-sm btn-outline">+ 옵션 추가</button>
         <div class="composer-actions">
-          <button id="postCancel" class="btn btn-ghost">Cancel</button>
-          <button id="postSubmit" class="btn">Post</button>
+          <button id="electionCancel" class="btn btn-ghost">취소</button>
+          <button id="electionSubmit" class="btn btn-success">시작하기</button>
+        </div>
+      </div>
+
+      <div id="composer" class="composer hidden">
+        <h3>게시글 작성</h3>
+        <input id="postTitle" placeholder="제목 (선택사항)" />
+        <textarea id="postBody" rows="4" placeholder="무슨 생각을 하고 계신가요?"></textarea>
+        <input id="postTags" placeholder="태그 (쉼표로 구분)" />
+        <div class="composer-actions">
+          <button id="postCancel" class="btn btn-ghost">취소</button>
+          <button id="postSubmit" class="btn">게시</button>
         </div>
       </div>
 
@@ -43,27 +81,27 @@
         <!-- posts injected here -->
       </div>
 
-      <div id="noPosts" class="no-posts hidden">No posts yet — be the first to post!</div>
+      <div id="noPosts" class="no-posts hidden">아직 게시글이 없습니다. 첫 번째 글을 남겨보세요!</div>
     </section>
 
     <aside class="side-col">
       <div class="card about">
-        <h4>About this community</h4>
-        <p>A friendly place to ask questions, share updates, and connect with other members.</p>
+        <h4>커뮤니티 소개</h4>
+        <p>질문을 하고, 소식을 공유하며 다른 멤버들과 소통하는 따뜻한 공간입니다.</p>
         <div class="meta">
-          <span id="memberCount">0</span> members
+          <span id="memberCount">0</span> 명의 멤버
         </div>
       </div>
 
       <div class="card members">
-        <h4>Members</h4>
+        <h4>멤버</h4>
         <ul id="membersList" class="members-list">
           <!-- members injected -->
         </ul>
       </div>
 
       <div class="card tags">
-        <h4>Popular tags</h4>
+        <h4>인기 태그</h4>
         <div id="tagsCloud" class="tags-cloud">
           <!-- tags injected -->
         </div>
@@ -76,12 +114,18 @@
       <header class="post-head">
         <div class="avatar"></div>
         <div class="meta">
-          <div class="author">You</div>
-          <div class="time">just now</div>
+          <div class="author">나</div>
+          <div class="time">방금 전</div>
         </div>
       </header>
-      <h3 class="post-title"></h3>
-      <div class="post-body"></div>
+      <div class="post-content">
+        <h3 class="post-title"></h3>
+        <div class="post-body"></div>
+        <div class="election-display hidden">
+          <h4 class="election-q"></h4>
+          <div class="election-votes"></div>
+        </div>
+      </div>
       <div class="post-tags"></div>
       <footer class="post-foot">
         <div class="post-actions">
@@ -93,8 +137,8 @@
       <div class="comments hidden">
         <div class="existing-comments"></div>
         <div class="add-comment">
-          <input class="comment-input" placeholder="Write a comment..." />
-          <button class="btn btn-sm add-comment-btn">Reply</button>
+          <input class="comment-input" placeholder="댓글을 입력하세요..." />
+          <button class="btn btn-sm add-comment-btn">답글</button>
         </div>
       </div>
     </article>
